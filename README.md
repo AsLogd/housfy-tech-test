@@ -21,5 +21,5 @@ $ cargo bench
 ```
 ## Other problems
 Check out my other [repository](https://github.com/AsLogd/advent-of-code-2020) where I'm currently solving this year's [Advent of Code](https://adventofcode.com/2020)
-
+(day 12 was very similar to this problem)  
 Cheers!
