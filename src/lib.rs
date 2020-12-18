@@ -11,6 +11,7 @@ pub enum Instr {
     Left,
     Right,
     Forward,
+    Noop,
 }
 
 /*===============
@@ -112,7 +113,8 @@ impl Rover {
         match instr {
             Instr::Left    => self.rotate_left(),
             Instr::Right   => self.rotate_right(),
-            Instr::Forward => self.move_forward()
+            Instr::Forward => self.move_forward(),
+            Instr::Noop    => Ok(())
         }
     }
 }
@@ -125,7 +127,7 @@ pub fn parse_input(input: &str) -> Option<(Rover, Vec<Instr>)> {
     // Parse starting position
     let mut pos_iter = lines.next()?
         .split(',')
-        .map(|x| x.trim().parse::<i32>().unwrap());
+        .map(|x| x.trim().parse::<i32>().unwrap_or(0));
     let pos = Point{
         x: pos_iter.next()?,
         y: pos_iter.next()?,
@@ -144,7 +146,8 @@ pub fn parse_input(input: &str) -> Option<(Rover, Vec<Instr>)> {
         match c {
             'R' => Instr::Right,
             'L' => Instr::Left,
-            _   => Instr::Forward,
+            'F' => Instr::Forward,
+            _   => Instr::Noop,
         }
     ).collect::<Vec<Instr>>();
 
