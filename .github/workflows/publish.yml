@@ -1,4 +1,4 @@
-name: Htt
+name: Publish
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   publish:
-    name: Htt for ${{ matrix.os }}
+    name: Publish for ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -20,16 +20,16 @@ jobs:
         include:
           - name: linux
             os: ubuntu-latest
-            artifact_name: target/release/<name>
-            asset_name: <name>-linux
+            artifact_name: target/release/htt
+            asset_name: htt-linux
           - name: windows
             os: windows-latest
-            artifact_name: target/release/<name>.exe
-            asset_name: <name>-windows
+            artifact_name: target/release/htt.exe
+            asset_name: htt-windows
           - name: macos
             os: macos-latest
-            artifact_name: target/release/<name>
-            asset_name: <name>-macos
+            artifact_name: target/release/htt
+            asset_name: htt-macos
 
     steps:
     - uses: actions/checkout@v1
